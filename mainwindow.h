@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "tooltagsModel.h"
+#include <QStandardItemModel>
+#include <QSortFilterProxyModel>
+#include "tooltags.h"
+#include "toolapps.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,6 +18,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_ToolTags_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

@@ -19,16 +19,16 @@
      <number>0</number>
     </property>
     <property name="leftMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>4</number>
+     <number>0</number>
     </property>
     <item alignment="Qt::AlignLeft">
      <widget class="QFrame" name="frame_2">
@@ -40,7 +40,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>0</number>
+        <number>10</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -55,7 +55,30 @@
         <number>0</number>
        </property>
        <item alignment="Qt::AlignHCenter">
-        <widget class="QListView" name="ToolTags"/>
+        <widget class="QListView" name="ToolTags">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+border:0px;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="autoScrollMargin">
+          <number>10</number>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>false</bool>
+         </property>
+         <property name="flow">
+          <enum>QListView::TopToBottom</enum>
+         </property>
+         <property name="batchSize">
+          <number>100</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -85,7 +108,14 @@
         <number>0</number>
        </property>
        <item row="0" column="0">
-        <widget class="QTableView" name="Tools"/>
+        <widget class="QTableView" name="ToolApps">
+         <property name="styleSheet">
+          <string notr="true">border:0px;</string>
+         </property>
+         <property name="autoScrollMargin">
+          <number>10</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

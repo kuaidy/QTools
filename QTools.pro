@@ -11,11 +11,13 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    tooltagsmodel.cpp
+    toolapps.cpp \
+    tooltags.cpp
 
 HEADERS += \
     mainwindow.h \
-    tooltagsmodel.h
+    toolapps.h \
+    tooltags.h
 
 FORMS += \
     mainwindow.ui
@@ -27,3 +29,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     test.qml
+
+RESOURCES += \
+    Image.qrc

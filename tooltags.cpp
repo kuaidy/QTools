@@ -90,7 +90,7 @@ void ToolTagDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
         iconRect.setY(option.rect.y()+mListHeight/2-mIconHeight/2);
         iconRect.setWidth(mIconHeight);
         iconRect.setHeight(mIconHeight);
-        painter->drawImage(iconRect,QImage(":/new/prefix/image/more.png"));
+        painter->drawImage(iconRect,QImage(toolTagInfo->mIconPath));
 //        painter->fillPath(path,Qt::cyan);
         painter->setFont(QFont("Microsoft Yahei", mFontSize));
         painter->drawText(option.rect.x()+iconRect.x()+mIconWidth+10,option.rect.y()+mListHeight/2+mFontSize/2,toolTagInfo->mTagName);

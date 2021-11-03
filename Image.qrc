@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/new/prefix">
         <file>image/more.png</file>
+        <file>image/efficiency.png</file>
+        <file>image/qtools.png</file>
+        <file>image/set.png</file>
     </qresource>
 </RCC>

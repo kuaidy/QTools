@@ -8,17 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     QStandardItemModel *pModel=new QStandardItemModel();
 
-    for(int i=0;i<5;i++){
-        QStandardItem *pItem=new QStandardItem();
-        ToolTagInfo *toolTagInfo=new ToolTagInfo();
-        toolTagInfo->mIconPath="";
-        toolTagInfo->mTagCode="More";
-        toolTagInfo->mTagName="发现";
-        QVariant variant;
-        variant.setValue(toolTagInfo);
-        pItem->setData(QVariant::fromValue(variant),Qt::UserRole+1);
-        pModel->appendRow(pItem);
-    }
+    InitData(pModel);
 
     ToolTagDelegate *toolTagDelegate=new ToolTagDelegate(this);
     ui->ToolTags->setItemDelegate(toolTagDelegate);
@@ -39,4 +29,35 @@ void MainWindow::on_ToolTags_clicked(const QModelIndex &index)
 {
 
 }
+//初始化菜单数据
+void MainWindow::InitData(QStandardItemModel *pModel){
+    QStandardItem *pItem=new QStandardItem();
+    ToolTagInfo *toolTagInfo=new ToolTagInfo();
+    toolTagInfo->mIconPath=":/new/prefix/image/efficiency.png";
+    toolTagInfo->mTagCode="efficiency";
+    toolTagInfo->mTagName="效率";
+    QVariant variant;
+    variant.setValue(toolTagInfo);
+    pItem->setData(QVariant::fromValue(variant),Qt::UserRole+1);
+    pModel->appendRow(pItem);
 
+    QStandardItem *pItem1=new QStandardItem();
+    ToolTagInfo *toolTagInfo1=new ToolTagInfo();
+    toolTagInfo1->mIconPath=":/new/prefix/image/more.png";
+    toolTagInfo1->mTagCode="more";
+    toolTagInfo1->mTagName="发现";
+    QVariant variant1;
+    variant1.setValue(toolTagInfo1);
+    pItem1->setData(QVariant::fromValue(variant1),Qt::UserRole+1);
+    pModel->appendRow(pItem1);
+
+    QStandardItem *pItem2=new QStandardItem();
+    ToolTagInfo *toolTagInfo2=new ToolTagInfo();
+    toolTagInfo2->mIconPath=":/new/prefix/image/set.png";
+    toolTagInfo2->mTagCode="set";
+    toolTagInfo2->mTagName="设置";
+    QVariant variant2;
+    variant2.setValue(toolTagInfo2);
+    pItem2->setData(QVariant::fromValue(variant2),Qt::UserRole+1);
+    pModel->appendRow(pItem2);
+}

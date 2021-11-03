@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>704</width>
-    <height>418</height>
+    <width>894</width>
+    <height>566</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>工具箱</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Image.qrc">
+    <normaloff>:/new/prefix/image/qtools.png</normaloff>:/new/prefix/image/qtools.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -66,6 +70,9 @@ border:0px;</string>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
          <property name="autoScrollMargin">
           <number>10</number>
          </property>
@@ -75,8 +82,14 @@ border:0px;</string>
          <property name="flow">
           <enum>QListView::TopToBottom</enum>
          </property>
+         <property name="resizeMode">
+          <enum>QListView::Fixed</enum>
+         </property>
+         <property name="uniformItemSizes">
+          <bool>false</bool>
+         </property>
          <property name="batchSize">
-          <number>100</number>
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -124,6 +137,8 @@ border:0px;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Image.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent)
     proxyModel->setDynamicSortFilter(true);
 //    ui->ToolTags->setViewMode(QListView::IconMode);
     ui->ToolTags->setModel(proxyModel);
-
     QStringList nameItem;
     nameItem << "Linux" << "Android" << "Mac OS";
     QStandardItemModel *appModel=new QStandardItemModel(nameItem.length(),1);

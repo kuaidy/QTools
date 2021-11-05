@@ -121,12 +121,12 @@ border:0px;</string>
         <number>0</number>
        </property>
        <item row="0" column="0">
-        <widget class="QTableView" name="ToolApps">
+        <widget class="QListView" name="ToolApps">
          <property name="styleSheet">
           <string notr="true">border:0px;</string>
          </property>
-         <property name="autoScrollMargin">
-          <number>10</number>
+         <property name="flow">
+          <enum>QListView::TopToBottom</enum>
          </property>
         </widget>
        </item>

@@ -50,3 +50,51 @@ void ToolAppModel::InitData(){
     ToolApp toolItem("everything", "everything","https://www.rdonly.com","https://www.rdonly.com");
     m_datas.push_back(toolItem);
 }
+
+//自定义listview的样式
+ToolAppDelegate::ToolAppDelegate(QObject *parent):QStyledItemDelegate(parent)
+{
+}
+void ToolAppDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    if(index.isValid()){
+        painter->save();
+        ToolAppInfo *toolAppInfo=index.data(Qt::UserRole+1).value<ToolAppInfo*>();
+        //矩形区域
+        QRectF rect;
+        rect.setX(option.rect.x());
+        rect.setY(option.rect.y());
+        rect.setWidth(option.rect.width());
+        rect.setHeight(option.rect.height());
+
+        QPainterPath path;
+        path.moveTo(rect.topRight());
+        path.lineTo(rect.topLeft());
+        path.quadTo(rect.topLeft(),rect.topLeft());
+        path.lineTo(rect.bottomLeft());
+        path.quadTo(rect.bottomLeft(), rect.bottomLeft());
+        path.lineTo(rect.bottomRight());
+        path.quadTo(rect.bottomRight(), rect.bottomRight());
+        path.lineTo(rect.topRight());
+        path.quadTo(rect.topRight(), rect.topRight());
+        //绘制图标，名称
+        painter->setPen(QPen(Qt::black));
+        painter->drawPath(path);
+        QRect iconRect;
+        iconRect.setX(option.rect.x()+10);
+        iconRect.setY(option.rect.y()+mListHeight/2-mIconHeight/2);
+        iconRect.setWidth(mIconHeight);
+        iconRect.setHeight(mIconHeight);
+//        painter->drawImage(iconRect,QImage(ToolAppInfo->mIconPath));
+//        painter->fillPath(path,Qt::cyan);
+        painter->setFont(QFont("Microsoft Yahei", mFontSize));
+        painter->drawText(option.rect.x()+iconRect.x()+mIconWidth+10,option.rect.y()+mListHeight/2+mFontSize/2,toolAppInfo->mTagName);
+        painter->restore();
+    }
+}
+QSize ToolAppDelegate::sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index)const{
+    return QSize(option.rect.width(), mListHeight);
+}
+
+
+

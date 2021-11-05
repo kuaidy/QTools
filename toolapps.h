@@ -2,6 +2,9 @@
 #define TOOLAPPS_H
 
 #include <QAbstractTableModel>
+#include <QStyledItemDelegate>
+#include <QPainter>
+#include <QPainterPath>
 
 class ToolApp
 {
@@ -43,5 +46,29 @@ private:
     //model数据集合
     std::vector<ToolApp>  m_datas;
 };
+
+class ToolAppInfo{
+public:
+    QString mIconPath;
+    QString mTagCode;
+    QString mTagName;
+};
+
+//自定义list的样式
+class ToolAppDelegate:public QStyledItemDelegate
+{
+public:
+    ToolAppDelegate(QObject *parent=nullptr);
+    void paint(QPainter *painter,const QStyleOptionViewItem &option,const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QSize sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index)const Q_DECL_OVERRIDE;
+private:
+    int mListHeight=30;
+    int mFontSize=10;
+    int mIconWidth=30;
+    int mIconHeight=30;
+};
+
+
+
 
 #endif // TOOLAPPS_H

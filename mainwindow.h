@@ -18,8 +18,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void InitData(QStandardItemModel *pModel);
-    void InitAppsData(QStandardItemModel *pModel);
+    void InitTagData();
+    void InitTagDataNew();
+    void InitAppsData();
 
 private slots:
     void on_ToolTags_clicked(const QModelIndex &index);

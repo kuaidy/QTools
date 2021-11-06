@@ -50,8 +50,8 @@ private:
 class ToolAppInfo{
 public:
     QString mIconPath;
-    QString mTagCode;
-    QString mTagName;
+    QString mAppCode;
+    QString mAppName;
 };
 
 //自定义list的样式

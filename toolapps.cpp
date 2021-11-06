@@ -88,7 +88,7 @@ void ToolAppDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
 //        painter->drawImage(iconRect,QImage(ToolAppInfo->mIconPath));
 //        painter->fillPath(path,Qt::cyan);
         painter->setFont(QFont("Microsoft Yahei", mFontSize));
-        painter->drawText(option.rect.x()+iconRect.x()+mIconWidth+10,option.rect.y()+mListHeight/2+mFontSize/2,toolAppInfo->mTagName);
+        painter->drawText(option.rect.x()+iconRect.x()+mIconWidth+10,option.rect.y()+mListHeight/2+mFontSize/2,toolAppInfo->mAppName);
         painter->restore();
     }
 }

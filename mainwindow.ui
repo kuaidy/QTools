@@ -64,8 +64,7 @@
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-border:0px;</string>
+          <string notr="true">border:0px;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -83,7 +82,7 @@ border:0px;</string>
           <enum>QListView::TopToBottom</enum>
          </property>
          <property name="resizeMode">
-          <enum>QListView::Fixed</enum>
+          <enum>QListView::Adjust</enum>
          </property>
          <property name="uniformItemSizes">
           <bool>false</bool>
@@ -122,6 +121,9 @@ border:0px;</string>
        </property>
        <item row="0" column="0">
         <widget class="QListView" name="ToolApps">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">border:0px;</string>
          </property>

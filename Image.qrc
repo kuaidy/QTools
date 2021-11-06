@@ -4,5 +4,6 @@
         <file>image/efficiency.png</file>
         <file>image/qtools.png</file>
         <file>image/set.png</file>
+        <file>image/everything.png</file>
     </qresource>
 </RCC>

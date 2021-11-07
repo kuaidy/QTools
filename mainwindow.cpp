@@ -101,13 +101,15 @@ void MainWindow::InitAppsData(){
     toolAppInfo->mIconPath=":/new/prefix/image/everything.png";
     toolAppInfo->mAppCode="everything";
     toolAppInfo->mAppName="EveryThing";
-    QStandardItemModel *appModel=new QStandardItemModel(1,1);
+    toolAppInfo->mAppPath="./apps/EveryThing/Everything.exe";
+    QStandardItemModel *appModel=new QStandardItemModel(1,2);
     QModelIndex modelIndex=appModel->index(0,0);
     appModel->setData(modelIndex,toolAppInfo->mAppName,Qt::DisplayRole);
     appModel->setData(modelIndex,QIcon(toolAppInfo->mIconPath),Qt::DecorationRole);
+    appModel->setData(modelIndex,toolAppInfo->mAppPath,Qt::UserRole);
     ui->ToolApps->setViewMode(QListView::IconMode);
-    ui->ToolApps->setIconSize( QSize(50, 50) );
-    ui->ToolApps->setGridSize( QSize(100, 100));
+    ui->ToolApps->setIconSize(QSize(50, 50));
+    ui->ToolApps->setGridSize(QSize(100, 100));
     ui->ToolApps->setFlow(QListView::LeftToRight);
     ui->ToolApps->setWrapping(true);
     ui->ToolApps->setResizeMode(QListView::Adjust);
@@ -117,6 +119,6 @@ void MainWindow::InitAppsData(){
 
 void MainWindow::on_ToolApps_doubleClicked(const QModelIndex &index)
 {
-
+    qDebug()<<index.data(Qt::UserRole);
 }
 

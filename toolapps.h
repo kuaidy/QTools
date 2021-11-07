@@ -52,6 +52,7 @@ public:
     QString mIconPath;
     QString mAppCode;
     QString mAppName;
+    QString mAppPath;
 };
 
 //自定义list的样式

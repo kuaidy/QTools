@@ -25,6 +25,8 @@ public:
 private slots:
     void on_ToolTags_clicked(const QModelIndex &index);
 
+    void on_ToolApps_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 };

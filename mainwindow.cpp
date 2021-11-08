@@ -19,7 +19,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_ToolTags_clicked(const QModelIndex &index)
 {
-
+    QString tagName=index.data(Qt::DisplayRole).toString();
+    if(tagName=="发现"){
+//        QWebView view;
+//        view.load(QUrl(https://blog.csdn.net/qq_36651243));
+//        view.show();
+    }
 }
 //初始化菜单数据
 void MainWindow::InitTagData(){
@@ -101,7 +106,7 @@ void MainWindow::InitAppsData(){
     toolAppInfo->mIconPath=":/new/prefix/image/everything.png";
     toolAppInfo->mAppCode="everything";
     toolAppInfo->mAppName="EveryThing";
-    toolAppInfo->mAppPath="./apps/EveryThing/Everything.exe";
+    toolAppInfo->mAppPath="apps/EveryThing/Everything.exe";
     QStandardItemModel *appModel=new QStandardItemModel(1,2);
     QModelIndex modelIndex=appModel->index(0,0);
     appModel->setData(modelIndex,toolAppInfo->mAppName,Qt::DisplayRole);
@@ -120,5 +125,11 @@ void MainWindow::InitAppsData(){
 void MainWindow::on_ToolApps_doubleClicked(const QModelIndex &index)
 {
     qDebug()<<index.data(Qt::UserRole);
+    qDebug()<<QCoreApplication::applicationDirPath();
+    QString exePath=QCoreApplication::applicationDirPath()+"/"+index.data(Qt::UserRole).toString();
+    QFileInfo file(exePath);
+    if(file.exists()){
+        QProcess::startDetached(exePath,QStringList());
+    }
 }
 

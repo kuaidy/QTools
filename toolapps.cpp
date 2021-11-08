@@ -8,6 +8,7 @@ ToolAppModel::ToolAppModel(QObject *parent)
 QVariant ToolAppModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     // FIXME: Implement me!
+    return QVariant();
 }
 
 int ToolAppModel::rowCount(const QModelIndex &parent) const

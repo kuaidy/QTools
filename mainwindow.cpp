@@ -6,9 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     //InitTagData();
     InitTagDataNew();
     InitAppsData();
+
 }
 
 MainWindow::~MainWindow()
@@ -21,9 +23,11 @@ void MainWindow::on_ToolTags_clicked(const QModelIndex &index)
 {
     QString tagName=index.data(Qt::DisplayRole).toString();
     if(tagName=="发现"){
-//        QWebView view;
-//        view.load(QUrl(https://blog.csdn.net/qq_36651243));
-//        view.show();
+        QWebEngineView *view;
+        view = new QWebEngineView(ui->ToolApps);
+        view->load(QUrl("https://www.rdonly.com"));
+        view->resize(ui->ToolApps->size());
+        view->show();
     }
 }
 //初始化菜单数据
@@ -75,11 +79,13 @@ void MainWindow::InitTagDataNew(){
     toolTagInfo.mTagCode="efficiency";
     toolTagInfo.mTagName="效率";
     toolTags.append(toolTagInfo);
+
     ToolTagInfo toolTagInfo1;
     toolTagInfo1.mIconPath=":/new/prefix/image/more.png";
     toolTagInfo1.mTagCode="more";
     toolTagInfo1.mTagName="发现";
     toolTags.append(toolTagInfo1);
+
     ToolTagInfo toolTagInfo2;
     toolTagInfo2.mIconPath=":/new/prefix/image/set.png";
     toolTagInfo2.mTagCode="set";
@@ -106,7 +112,7 @@ void MainWindow::InitAppsData(){
     toolAppInfo->mIconPath=":/new/prefix/image/everything.png";
     toolAppInfo->mAppCode="everything";
     toolAppInfo->mAppName="EveryThing";
-    toolAppInfo->mAppPath="apps/EveryThing/Everything.exe";
+    toolAppInfo->mAppPath="apps/Efficiency/EveryThing/Everything.exe";
     QStandardItemModel *appModel=new QStandardItemModel(1,2);
     QModelIndex modelIndex=appModel->index(0,0);
     appModel->setData(modelIndex,toolAppInfo->mAppName,Qt::DisplayRole);

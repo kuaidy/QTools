@@ -7,6 +7,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QUrl>
+#include <QWebEngineView>
 #include "tooltags.h"
 #include "toolapps.h"
 

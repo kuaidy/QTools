@@ -8,6 +8,12 @@
 #include <QProcess>
 #include <QUrl>
 #include <QWebEngineView>
+#include <QFile>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+
 #include "tooltags.h"
 #include "toolapps.h"
 

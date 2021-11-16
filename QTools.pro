@@ -30,4 +30,5 @@ DISTFILES += \
     test.qml
 
 RESOURCES += \
-    Image.qrc
+    Image.qrc \
+    data.qrc

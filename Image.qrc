@@ -1,9 +1,12 @@
 <RCC>
-    <qresource prefix="/new/prefix">
+    <qresource prefix="/image">
         <file>image/more.png</file>
         <file>image/efficiency.png</file>
         <file>image/qtools.png</file>
         <file>image/set.png</file>
         <file>image/everything.png</file>
+        <file>image/other.png</file>
+        <file>image/fscapture.png</file>
+        <file>image/flux.png</file>
     </qresource>
 </RCC>

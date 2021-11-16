@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/data">
+        <file>data/toolapps.json</file>
+        <file>data/tooltags.json</file>
+    </qresource>
+</RCC>

@@ -53,7 +53,7 @@ void MainWindow::InitTagData(){
 
     QStandardItem *pItem1=new QStandardItem();
     ToolTagInfo *toolTagInfo1=new ToolTagInfo();
-    toolTagInfo1->mIconPath=":/new/prefix/image/more.png";
+    toolTagInfo1->mIconPath=":/image/image/other.png";
     toolTagInfo1->mTagCode="more";
     toolTagInfo1->mTagName="发现";
     QVariant variant1;
@@ -74,23 +74,46 @@ void MainWindow::InitTagData(){
 //初始化分类
 void MainWindow::InitTagDataNew(){
     QVector<ToolTagInfo> toolTags;
-    ToolTagInfo toolTagInfo;
-    toolTagInfo.mIconPath=":/new/prefix/image/efficiency.png";
-    toolTagInfo.mTagCode="efficiency";
-    toolTagInfo.mTagName="效率";
-    toolTags.append(toolTagInfo);
+    //读取json数据
+    QFile file(":/data/data/tooltags.json");
+    if(!file.open(QIODevice::ReadOnly)){
+        return ;
+    }
+    QByteArray allData=file.readAll();
+    file.close();
+    QJsonParseError jsonError;
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(allData,&jsonError));
+    if(jsonError.error!=QJsonParseError::NoError){
+        return ;
+    }
+    QJsonArray jsonArray=jsonDoc.array();
+    for(int i=0;i<jsonArray.size();i++){
+        QJsonObject tagObj=jsonArray.at(i).toObject();
+        ToolTagInfo toolTagInfo;
+        if(tagObj.contains("Name")){
+            toolTagInfo.mTagName=tagObj["Name"].toString();
+        }
+        if(tagObj.contains("EName")){
+            toolTagInfo.mTagCode=tagObj["EName"].toString();
+        }
+        if(tagObj.contains("IconPath")){
+            toolTagInfo.mIconPath=tagObj["IconPath"].toString();
+        }
+        toolTags.append(toolTagInfo);
+    }
 
-    ToolTagInfo toolTagInfo1;
-    toolTagInfo1.mIconPath=":/new/prefix/image/more.png";
-    toolTagInfo1.mTagCode="more";
-    toolTagInfo1.mTagName="发现";
-    toolTags.append(toolTagInfo1);
+//    ToolTagInfo toolTagInfo1;
+//    toolTagInfo1.mIconPath=":/image/image/other.png";
+//    toolTagInfo1.mTagCode="more";
+//    toolTagInfo1.mTagName="发现";
+//    toolTags.append(toolTagInfo1);
 
-    ToolTagInfo toolTagInfo2;
-    toolTagInfo2.mIconPath=":/new/prefix/image/set.png";
-    toolTagInfo2.mTagCode="set";
-    toolTagInfo2.mTagName="设置";
-    toolTags.append(toolTagInfo2);
+//    ToolTagInfo toolTagInfo2;
+//    toolTagInfo2.mIconPath=":/image/image/set.png";
+//    toolTagInfo2.mTagCode="set";
+//    toolTagInfo2.mTagName="设置";
+//    toolTags.append(toolTagInfo2);
+
     QStandardItemModel *appModel=new QStandardItemModel(toolTags.count(),1);
     for(int i=0;i<toolTags.count();i++){
         QModelIndex modelIndex=appModel->index(i,0);
@@ -108,16 +131,46 @@ void MainWindow::InitTagDataNew(){
 }
 //初始化内容数据
 void MainWindow::InitAppsData(){
-    ToolAppInfo *toolAppInfo=new ToolAppInfo();
-    toolAppInfo->mIconPath=":/new/prefix/image/everything.png";
-    toolAppInfo->mAppCode="everything";
-    toolAppInfo->mAppName="EveryThing";
-    toolAppInfo->mAppPath="apps/Efficiency/EveryThing/Everything.exe";
-    QStandardItemModel *appModel=new QStandardItemModel(1,2);
-    QModelIndex modelIndex=appModel->index(0,0);
-    appModel->setData(modelIndex,toolAppInfo->mAppName,Qt::DisplayRole);
-    appModel->setData(modelIndex,QIcon(toolAppInfo->mIconPath),Qt::DecorationRole);
-    appModel->setData(modelIndex,toolAppInfo->mAppPath,Qt::UserRole);
+
+    //读取json数据
+    QFile file(":/data/data/toolapps.json");
+    if(!file.open(QIODevice::ReadOnly)){
+        return ;
+    }
+    QByteArray allData=file.readAll();
+    file.close();
+    QJsonParseError jsonError;
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(allData,&jsonError));
+    if(jsonError.error!=QJsonParseError::NoError){
+        return ;
+    }
+    QJsonArray jsonArray=jsonDoc.array();
+    QStandardItemModel *appModel=new QStandardItemModel(jsonArray.size(),1);
+    for(int i=0;i<jsonArray.size();i++){
+        QJsonObject tagObj=jsonArray.at(i).toObject();
+        ToolAppInfo toolAppInfo;
+        if(tagObj.contains("Name")){
+            toolAppInfo.mAppName=tagObj["Name"].toString();
+        }
+        if(tagObj.contains("EName")){
+            toolAppInfo.mAppCode=tagObj["EName"].toString();
+        }
+        if(tagObj.contains("IconPath")){
+            toolAppInfo.mIconPath=tagObj["IconPath"].toString();
+        }
+        if(tagObj.contains("Path")){
+            toolAppInfo.mAppPath=tagObj["IconPath"].toString();
+        }
+        QModelIndex modelIndex=appModel->index(i,0);
+        appModel->setData(modelIndex,toolAppInfo.mAppName,Qt::DisplayRole);
+        appModel->setData(modelIndex,QIcon(toolAppInfo.mIconPath),Qt::DecorationRole);
+        appModel->setData(modelIndex,toolAppInfo.mAppPath,Qt::UserRole);
+    }
+//    ToolAppInfo *toolAppInfo=new ToolAppInfo();
+//    toolAppInfo->mIconPath=":/new/prefix/image/everything.png";
+//    toolAppInfo->mAppCode="everything";
+//    toolAppInfo->mAppName="EveryThing";
+//    toolAppInfo->mAppPath="apps/Efficiency/EveryThing/Everything.exe";
     ui->ToolApps->setViewMode(QListView::IconMode);
     ui->ToolApps->setIconSize(QSize(50, 50));
     ui->ToolApps->setGridSize(QSize(100, 100));
